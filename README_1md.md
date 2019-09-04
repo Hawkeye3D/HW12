@@ -10,5 +10,5 @@ The first step in a project like this is to organize it.  This is called setting
 
 My approach to this is to define, via VS Code all of the components, including this README, as a git project, HW12 and then start working on each component.  I will work on the things that I know best, first, getting them out of the way, and work my way through the list.  
 
-The following does not represent the order in which I have done the project, but the order which best explains how this works.
+The following does not represent the order in which I have done the project, but the order which best explains how this MVVM pattern works.
 
