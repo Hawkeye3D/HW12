@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Martian News</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark navbar-expand-lg navTimesbar-light bg-dark">
+    <a class="navbar-brand " href="All the news fit to obfuscate, where the Truth lives in Darkness">The Martian
+      Times</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="Home Page">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+            href="https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest">NASA</a>
+        </li>
+      </ul>
+      <ul class="nav nav-tabs">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            Dropdown</a>
+          <!-- URL_DataSources.update({'NASA':'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'})
+               URL_DataSources.update({'JPL':'https://www.jpl.nasa.gov/spaceimages/'})
+               URL_DataSources.update({'Mars Weather': 'https://twitter.com/MarsWxReport'})
+               URL_DataSources.update({'Mars Facts': 'https://space-facts.com/mars/'})
+               URL_DataSources.update({'Hemispheres': 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'})
+               -->
+          <div class="dropdown-menu">
+
+            <a class="dropdown-item"
+              href="https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest">NASA</a>
+
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container text-center">
+    <div class="card">
+      <div class="jumbotron">
+        <h1 class="display-3">{{ marsdata.nasatitle }}</h1>
+
+        <hr class="my-2">
+        <p>{{ marsdata.nasanote}}</p>
+        <p class="lead">
+          <a class="btn btn-dark btn-lg" href="Scrape Mars info from 5 different sites" role="button">Scrape News</a>
+          <a class="btn btn-dark btn-lg" href="Show what is really happening on Mars, not FAKE NEWS!"
+            role="button">Corgi News</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <div class="container text-left">
+
+    <div class="card">
+      <img src="{{  marsdata.nasaimgURL }}" width=80% height=500px alt=""
+        class=" mx-auto d-block img-responsive size">
+
+
+
+    </div>
+  </div>
+  <div class="container text-center">
+    <div class="alert alert-danger" role="alert">
+      <strong> WEATHER REPORT WARNING!</strong> {{ marsdata.mars_weather }}
+    </div>
+    <p class="display-4"><strong class="">MARTIAN PARAMETER DATA and EARTH COMPARISON</strong></p>
+  </div>
+ 
+  
+    <div class="container text-left">
+      <div class="row">
+    
+        <div class="col-lg-6"> {{ marsdata.datatable1 | safe }}</div>
+        <div class="col-lg-6"> {{ marsdata.datatable2 | safe }}</div>
+    
+      </div>
+    </div>
+  <div class="container">
+  <div class="row"> 
+    <div class="alert alert-primary" role="alert">
+      <strong> HEMISPHERE VIEWS OF MARS!</strong> 
+    </div>
+    <div class="col-lg-6 border rounded-lg">
+      {% for pic in marsdata.hemispherepics %}
+      <img src="{{ pic.img_url }}" alt="{{ pic.title }}" width=500px height=500px class="mx-auto d-block img-responsive size"">
+       <div class="caption center-block">{{ pic.title }}</div>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

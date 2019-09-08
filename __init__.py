@@ -1,2 +1,3 @@
-from tableparse import *
-from scrape_mars import *
+# from tableparse import Tableparse
+# from scrape_mars import Scrape_mars
+ 
