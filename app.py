@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect,request
 # %%
 # Module used to connect Python with MongoDb
 
@@ -28,12 +28,22 @@ db = client.mars_db  # implicitly declared mars DB
 collection = db.mars_db
 
 # This is run when the web page opens;f
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def home():
-    SetupMarsDB(False)
-    mars_data = collection.find_one()
+    if request.method=='POST':
+        if request.form.get('Mars_News') == 'Mars_News':        
+            SetupMarsDB(True)
+        elif request.form.get('Corgi_News') =='Corgi_News':
+            SetupMarsDB(True)
+        else:
+            mars_data = collection.find_one()
+            return render_template("index.html", marsdata=mars_data)
+    elif request.method=='GET':
+       
+         mars_data = collection.find_one()
+    SetupMarsDB(True)     
     return render_template("index.html", marsdata=mars_data)
-
+ 
 
 # Route that will trigger the scrape function
 @app.route("/scrape")
@@ -190,7 +200,7 @@ def scrape_mars_info():
             rethemisubcaptions =[] #Source of image caption
             rethemidict=[]
             for item in imgurls:
-                time.sleep(1)
+                time.sleep(3)
                 try:
                     response= requests.get(item,timeout=10)
                 except requests.exceptions.Timeout:

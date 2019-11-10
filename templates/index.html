@@ -66,9 +66,13 @@
         <hr class="my-2">
         <p>{{ marsdata.nasanote}}</p>
         <p class="lead">
-          <a class="btn btn-dark btn-lg" href="Scrape Mars info from 5 different sites" role="button">Scrape News</a>
+          <!-- <a class="btn btn-dark btn-lg" href="Scrape Mars info from 5 different sites" role="button">Scrape News</a>
           <a class="btn btn-dark btn-lg" href="Show what is really happening on Mars, not FAKE NEWS!"
-            role="button">Corgi News</a>
+            role="button">Corgi News</a> -->
+          <form methods='post' actions="/">
+             <input types="submit" name='Mars_News' value="Mars_News"/>
+            <input types="submit" name='Corgi_News' value="Corgi_News"/>
+          </form>
         </p>
       </div>
 
@@ -77,8 +81,7 @@
   <div class="container text-left">
 
     <div class="card">
-      <img src="{{  marsdata.nasaimgURL }}" width=80% height=500px alt=""
-        class=" mx-auto d-block img-responsive size">
+      <img src="{{  marsdata.nasaimgURL }}" width=80% height=500px alt="" class=" mx-auto d-block img-responsive size">
 
 
 
@@ -90,30 +93,31 @@
     </div>
     <p class="display-4"><strong class="">MARTIAN PARAMETER DATA and EARTH COMPARISON</strong></p>
   </div>
- 
-  
-    <div class="container text-left">
-      <div class="row">
-    
-        <div class="col-lg-6"> {{ marsdata.datatable1 | safe }}</div>
-        <div class="col-lg-6"> {{ marsdata.datatable2 | safe }}</div>
-    
-      </div>
+
+
+  <div class="container text-left">
+    <div class="row">
+
+      <div class="col-lg-6"> {{ marsdata.datatable1 | safe }}</div>
+      <div class="col-lg-6"> {{ marsdata.datatable2 | safe }}</div>
+
     </div>
+  </div>
   <div class="container">
-  <div class="row"> 
-    <div class="alert alert-primary" role="alert">
-      <strong> HEMISPHERE VIEWS OF MARS!</strong> 
-    </div>
-    <div class="col-lg-6 border rounded-lg">
-      {% for pic in marsdata.hemispherepics %}
-      <img src="{{ pic.img_url }}" alt="{{ pic.title }}" width=500px height=500px class="mx-auto d-block img-responsive size"">
-       <div class="caption center-block">{{ pic.title }}</div>
+    <div class="row">
+      <div class="alert alert-primary" role="alert">
+        <strong> HEMISPHERE VIEWS OF MARS!</strong>
+      </div>
+      <div class="col-lg-6 border rounded-lg">
+        {% for pic in marsdata.hemispherepics %}
+        <img src="{{ pic.img_url }}" alt="{{ pic.title }}" width=500px height=500px
+          class="mx-auto d-block img-responsive size"">
+       <div class=" caption center-block">{{ pic.title }}</div>
 
       {% endfor %}
     </div>
   </div>
-</div>
+  </div>
 
   </div>
 </body>
